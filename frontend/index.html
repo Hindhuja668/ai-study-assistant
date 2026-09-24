@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI Study Assistant</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+</head>
+
+<body<body data-theme="light">
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">✦</div>
+
+            <div>
+                <h2>StudyAI</h2>
+                <span>Study smarter</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <button
+                class="nav-item active"
+                data-section="dashboard"
+            >
+                <span>⌂</span>
+                Dashboard
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="materials"
+            >
+                <span>▣</span>
+                Materials
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="ask"
+            >
+                <span>✦</span>
+                Ask AI
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="quiz"
+            >
+                <span>✓</span>
+                Quiz
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="study-plan"
+            >
+                <span>◷</span>
+                Study Plan
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="history"
+            >
+                <span>▤</span>
+                History
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="streak-card">
+
+                <div class="streak-icon">🔥</div>
+
+                <div>
+                    <strong>
+                        <span id="streakNumber">0</span>
+                        day streak
+                    </strong>
+
+                    <small>
+                        Keep studying today!
+                    </small>
+                </div>
+
+            </div>
+
+            <button
+                id="themeButton"
+                class="theme-button"
+            >
+                🌙 Dark mode
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+                <span class="eyebrow">
+                    AI STUDY ASSISTANT
+                </span>
+
+                <h1 id="pageTitle">
+                    Good to see you 👋
+                </h1>
+            </div>
+
+            <button
+                class="mobile-menu"
+                id="mobileMenu"
+            >
+                ☰
+            </button>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+
+        <section
+            id="dashboard"
+            class="section active"
+        >
+
+            <div class="hero">
+
+                <div>
+
+                    <span class="hero-label">
+                        YOUR PERSONAL STUDY SPACE
+                    </span>
+
+                    <h2>
+                        Learn better.
+                        <br>
+                        <span>Study smarter.</span>
+                    </h2>
+
+                    <p>
+                        Upload your notes, ask questions,
+                        practice with quizzes, and build
+                        an editable study plan.
+                    </p>
+
+                    <button
+                        class="primary-button"
+                        onclick="showSection('materials')"
+                    >
+                        Upload Material →
+                    </button>
+
+                </div>
+
+                <div class="hero-graphic">
+                    <div class="floating-card card-one">
+                        ✓ Quiz
+                    </div>
+
+                    <div class="floating-card card-two">
+                        ◷ Study
+                    </div>
+
+                    <div class="hero-circle">
+                        ✦
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span>Materials</span>
+                    <strong id="materialsCount">
+                        0
+                    </strong>
+                    <small>
+                        Uploaded resources
+                    </small>
+                </div>
+
+                <div class="stat-card">
+                    <span>Questions</span>
+                    <strong id="questionsCount">
+                        0
+                    </strong>
+                    <small>
+                        AI conversations
+                    </small>
+                </div>
+
+                <div class="stat-card">
+                    <span>Quizzes</span>
+                    <strong id="quizCount">
+                        0
+                    </strong>
+                    <small>
+                        Practice attempts
+                    </small>
+                </div>
+
+                <div class="stat-card">
+                    <span>Study Plans</span>
+                    <strong id="plansCount">
+                        0
+                    </strong>
+                    <small>
+                        Saved schedules
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">
+                        QUICK ACTIONS
+                    </span>
+
+                    <h3>
+                        What do you want to do?
+                    </h3>
+                </div>
+            </div>
+
+
+            <div class="quick-grid">
+
+                <button
+                    class="quick-card"
+                    onclick="showSection('materials')"
+                >
+                    <div class="quick-icon">📚</div>
+                    <strong>Upload notes</strong>
+                    <span>
+                        PDF or image
+                    </span>
+                </button>
+
+                <button
+                    class="quick-card"
+                    onclick="showSection('ask')"
+                >
+                    <div class="quick-icon">💬</div>
+                    <strong>Ask AI</strong>
+                    <span>
+                        Understand your material
+                    </span>
+                </button>
+
+                <button
+                    class="quick-card"
+                    onclick="showSection('quiz')"
+                >
+                    <div class="quick-icon">🧠</div>
+                    <strong>Take a quiz</strong>
+                    <span>
+                        10 questions
+                    </span>
+                </button>
+
+                <button
+                    class="quick-card"
+                    onclick="showSection('study-plan')"
+                >
+                    <div class="quick-icon">⏰</div>
+                    <strong>Plan your time</strong>
+                    <span>
+                        Create an hourly plan
+                    </span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- MATERIALS -->
+
+        <section
+            id="materials"
+            class="section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">
+                        MATERIALS
+                    </span>
+
+                    <h2>
+                        Your study material
+                    </h2>
+
+                    <p>
+                        Upload PDFs or photos of notes.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="upload-card">
+
+                <div class="upload-icon">
+                    ↑
+                </div>
+
+                <h3>
+                    Upload your notes
+                </h3>
+
+                <p>
+                    PDF, PNG, JPG, JPEG or WEBP
+                </p>
+
+                <label
+                    class="upload-button"
+                    for="fileInput"
+                >
+                    Choose file
+                </label>
+
+                <input
+                    id="fileInput"
+                    type="file"
+                    accept=".pdf,.png,.jpg,.jpeg,.webp"
+                    hidden
+                >
+
+                <div id="fileName"></div>
+
+                <button
+                    id="uploadButton"
+                    class="primary-button"
+                >
+                    Upload Material
+                </button>
+
+                <div
+                    id="uploadStatus"
+                    class="status"
+                ></div>
+
+            </div>
+
+
+            <div class="section-heading compact">
+
+                <div>
+                    <h3>
+                        Uploaded materials
+                    </h3>
+                </div>
+
+            </div>
+
+            <div
+                id="materialsList"
+                class="materials-list"
+            ></div>
+
+        </section>
+
+
+        <!-- ASK AI -->
+
+        <section
+            id="ask"
+            class="section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">
+                        ASK AI
+                    </span>
+
+                    <h2>
+                        Ask about your material
+                    </h2>
+
+                    <p>
+                        Ask a question based on your
+                        uploaded study material.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="ask-layout">
+
+                <div class="ask-box">
+
+                    <label>
+                        Material
+                    </label>
+
+                    <select id="askMaterial">
+                        <option value="">
+                            Latest material
+                        </option>
+                    </select>
+
+                    <label>
+                        Your question
+                    </label>
+
+                    <textarea
+                        id="questionInput"
+                        placeholder="Example: What is photosynthesis?"
+                    ></textarea>
+
+                    <button
+                        id="askButton"
+                        class="primary-button"
+                    >
+                        Ask AI →
+                    </button>
+
+                </div>
+
+
+                <div class="answer-card">
+
+                    <span class="eyebrow">
+                        ANSWER
+                    </span>
+
+                    <div id="answerOutput">
+                        Your answer will appear here.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUIZ -->
+
+        <section
+            id="quiz"
+            class="section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">
+                        QUIZ
+                    </span>
+
+                    <h2>
+                        Test your knowledge
+                    </h2>
+
+                    <p>
+                        Every quiz contains exactly
+                        10 questions.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="quiz-start-card">
+
+                <h3>
+                    Ready to test yourself?
+                </h3>
+
+                <p>
+                    Generate a 10-question quiz
+                    from your latest uploaded material.
+                </p>
+
+                <button
+                    id="generateQuizButton"
+                    class="primary-button"
+                >
+                    Generate 10 Questions
+                </button>
+
+            </div>
+
+
+            <div
+                id="quizContainer"
+                class="quiz-container hidden"
+            >
+
+                <div class="quiz-top">
+
+                    <div>
+                        <span class="eyebrow">
+                            QUESTION
+                        </span>
+
+                        <strong>
+                            <span id="currentQuestion">
+                                1
+                            </span>
+                            / 10
+                        </strong>
+                    </div>
+
+                    <div class="progress">
+                        <div
+                            id="quizProgress"
+                            class="progress-bar"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="quizQuestion"
+                    class="quiz-question"
+                ></div>
+
+                <div
+                    id="quizOptions"
+                    class="quiz-options"
+                ></div>
+
+                <button
+                    id="nextQuestionButton"
+                    class="primary-button"
+                    disabled
+                >
+                    Next Question →
+                </button>
+
+            </div>
+
+
+            <div
+                id="quizResult"
+                class="result-card hidden"
+            ></div>
+
+        </section>
+
+
+        <!-- STUDY PLAN -->
+
+        <section
+            id="study-plan"
+            class="section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">
+                        STUDY PLAN
+                    </span>
+
+                    <h2>
+                        Build your schedule
+                    </h2>
+
+                    <p>
+                        Choose how many hours you can
+                        study and update the plan whenever
+                        your schedule changes.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="plan-layout">
+
+                <div class="plan-form-card">
+
+                    <h3 id="planFormTitle">
+                        Create a study plan
+                    </h3>
+
+                    <input
+                        id="planTitle"
+                        type="text"
+                        placeholder="Plan name"
+                        value="My Study Plan"
+                    >
+
+                    <div class="form-row">
+
+                        <div>
+                            <label>
+                                Days
+                            </label>
+
+                            <input
+                                id="planDays"
+                                type="number"
+                                min="1"
+                                max="365"
+                                value="7"
+                            >
+                        </div>
+
+                        <div>
+                            <label>
+                                Hours / day
+                            </label>
+
+                            <input
+                                id="planHours"
+                                type="number"
+                                min="0.5"
+                                max="24"
+                                step="0.5"
+                                value="3"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <label>
+                        Start time
+                    </label>
+
+                    <input
+                        id="planStartTime"
+                        type="time"
+                        value="18:00"
+                    >
+
+
+                    <label>
+                        Subjects / topics
+                    </label>
+
+                    <input
+                        id="planSubjects"
+                        type="text"
+                        placeholder="Biology, Chemistry, Physics"
+                    >
+
+                    <small class="form-help">
+                        Separate subjects with commas.
+                    </small>
+
+
+                    <div class="button-row">
+
+                        <button
+                            id="savePlanButton"
+                            class="primary-button"
+                        >
+                            Create Plan
+                        </button>
+
+                        <button
+                            id="cancelEditButton"
+                            class="secondary-button hidden"
+                        >
+                            Cancel
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="planStatus"
+                        class="status"
+                    ></div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="section-heading compact">
+                        <div>
+                            <h3>
+                                Saved plans
+                            </h3>
+                        </div>
+                    </div>
+
+                    <div
+                        id="plansList"
+                        class="plans-list"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HISTORY -->
+
+        <section
+            id="history"
+            class="section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">
+                        HISTORY
+                    </span>
+
+                    <h2>
+                        Your progress
+                    </h2>
+
+                    <p>
+                        Review questions you've asked
+                        and previous quiz scores.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="history-grid">
+
+                <div class="history-card">
+
+                    <h3>
+                        Conversations
+                    </h3>
+
+                    <div
+                        id="conversationHistory"
+                        class="history-list"
+                    ></div>
+
+                </div>
+
+
+                <div class="history-card">
+
+                    <h3>
+                        Quiz scores
+                    </h3>
+
+                    <div
+                        id="quizHistory"
+                        class="history-list"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<script src="/script.js"></script>
+
+</body>
+</html>
